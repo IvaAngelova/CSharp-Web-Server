@@ -1,0 +1,11 @@
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\bin\Debug\net5.0\MyWebServer.Server.deps.json
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\bin\Debug\net5.0\MyWebServer.Server.dll
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\bin\Debug\net5.0\ref\MyWebServer.Server.dll
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\bin\Debug\net5.0\MyWebServer.Server.pdb
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\obj\Debug\net5.0\MyWebServer.Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\obj\Debug\net5.0\MyWebServer.Server.AssemblyInfoInputs.cache
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\obj\Debug\net5.0\MyWebServer.Server.AssemblyInfo.cs
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\obj\Debug\net5.0\MyWebServer.Server.csproj.CoreCompileInputs.cache
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\obj\Debug\net5.0\MyWebServer.Server.dll
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\obj\Debug\net5.0\ref\MyWebServer.Server.dll
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\MyWebServer.Server\obj\Debug\net5.0\MyWebServer.Server.pdb

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\SIS.csproj",
+      "projectUniqueName": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\SIS.csproj",
       "projectName": "SIS",
-      "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\SIS.csproj",
+      "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\SIS.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\obj\\",
+      "outputPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

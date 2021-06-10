@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v5.0": {
       "SIS/1.0.0": {
+        "dependencies": {
+          "MyWebServer.Server": "1.0.0"
+        },
         "runtime": {
           "SIS.dll": {}
+        }
+      },
+      "MyWebServer.Server/1.0.0": {
+        "runtime": {
+          "MyWebServer.Server.dll": {}
         }
       }
     }
   },
   "libraries": {
     "SIS/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MyWebServer.Server/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

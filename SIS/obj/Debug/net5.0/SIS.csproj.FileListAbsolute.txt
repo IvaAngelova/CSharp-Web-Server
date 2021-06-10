@@ -30,3 +30,6 @@ D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\SIS\obj\Debug\net5.0\SIS.dll
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\SIS\obj\Debug\net5.0\ref\SIS.dll
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\SIS\obj\Debug\net5.0\SIS.pdb
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\SIS\obj\Debug\net5.0\SIS.genruntimeconfig.cache
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\SIS\bin\Debug\net5.0\MyWebServer.Server.dll
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\SIS\bin\Debug\net5.0\MyWebServer.Server.pdb
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\SIS\obj\Debug\net5.0\SIS.csproj.CopyComplete

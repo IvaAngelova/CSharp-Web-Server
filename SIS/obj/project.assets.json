@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "MyWebServer.Server/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/MyWebServer.Server.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyWebServer.Server.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "MyWebServer.Server/1.0.0": {
+      "type": "project",
+      "path": "../MyWebServer.Server/MyWebServer.Server.csproj",
+      "msbuildProject": "../MyWebServer.Server/MyWebServer.Server.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "MyWebServer.Server >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Admin\\.nuget\\packages\\": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\SIS.csproj",
+      "projectUniqueName": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\SIS.csproj",
       "projectName": "SIS",
-      "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\SIS.csproj",
+      "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\SIS.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\obj\\",
+      "outputPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -33,7 +52,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\MyWebServer.Server\\MyWebServer.Server.csproj": {
+              "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\MyWebServer.Server\\MyWebServer.Server.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

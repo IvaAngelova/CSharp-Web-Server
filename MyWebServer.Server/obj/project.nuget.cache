@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lULS6dAEg729wPpyj+jJ/jujORjPFEtPYE33VWfJ9EiNrsN2in8gmG4q8c8HerPFPIn7g5qYbVZqKvXMT3u2ZQ==",
+  "dgSpecHash": "m2T0z59pLz4V6subJWRUkkpxbn78ebjJMFzsxOoFXa0ZMyasT7w0akM6ktOpp56tJ99qeowTgzVCfxGrQcozaQ==",
   "success": true,
-  "projectFilePath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\MyWebServer.Server\\MyWebServer.Server.csproj",
+  "projectFilePath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\MyWebServer.Server\\MyWebServer.Server.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

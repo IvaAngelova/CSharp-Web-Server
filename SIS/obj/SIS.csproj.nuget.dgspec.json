@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\SIS.csproj": {}
+    "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\SIS.csproj": {}
   },
   "projects": {
-    "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\MyWebServer.Server\\MyWebServer.Server.csproj": {
+    "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\MyWebServer.Server\\MyWebServer.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\MyWebServer.Server\\MyWebServer.Server.csproj",
+        "projectUniqueName": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\MyWebServer.Server\\MyWebServer.Server.csproj",
         "projectName": "MyWebServer.Server",
-        "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\MyWebServer.Server\\MyWebServer.Server.csproj",
+        "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\MyWebServer.Server\\MyWebServer.Server.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\MyWebServer.Server\\obj\\",
+        "outputPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\MyWebServer.Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,14 +58,14 @@
         }
       }
     },
-    "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\SIS.csproj": {
+    "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\SIS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\SIS.csproj",
+        "projectUniqueName": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\SIS.csproj",
         "projectName": "SIS",
-        "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\SIS.csproj",
+        "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\SIS.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\SIS\\obj\\",
+        "outputPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\SIS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,8 +82,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\MyWebServer.Server\\MyWebServer.Server.csproj": {
-                "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\MyWebServer.Server\\MyWebServer.Server.csproj"
+              "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\MyWebServer.Server\\MyWebServer.Server.csproj": {
+                "projectPath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\MyWebServer.Server\\MyWebServer.Server.csproj"
               }
             }
           }

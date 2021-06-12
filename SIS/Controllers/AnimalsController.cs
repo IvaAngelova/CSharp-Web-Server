@@ -27,6 +27,8 @@ namespace SIS.Controllers
             return Html(result);
         }
 
+        public HttpResponse Create() => View();
+
         public HttpResponse Dogs() => View();
 
         public HttpResponse Bunnies() => View("Rabbits");

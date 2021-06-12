@@ -6,6 +6,9 @@ namespace MyWebServer.Server.Http
 {
     public class HttpRequest
     {
+        private static Dictionary<string, HttpSession> Sessions
+            = new();
+
         private const string NewLine = "\r\n";
 
         public HttpMethod Method { get; private set; }
@@ -19,6 +22,8 @@ namespace MyWebServer.Server.Http
         public IReadOnlyDictionary<string, HttpHeader> Headers { get; private set; }
 
         public IReadOnlyDictionary<string, HttpCookie> Cookies { get; private set; }
+
+        public HttpSession Session { get; private set; }
 
         public string Body { get; private set; }
 
@@ -37,6 +42,8 @@ namespace MyWebServer.Server.Http
 
             var cookies = ParseCookies(headers);
 
+            var session = GetSesssion(cookies);
+
             var bodyLines = lines.Skip(headers.Count + 2).ToArray();
 
             var body = string.Join(NewLine, bodyLines);
@@ -50,9 +57,16 @@ namespace MyWebServer.Server.Http
                 Query = query,
                 Headers = headers,
                 Cookies = cookies,
+                Session = session,
                 Body = body,
                 Form = form
             };
+        }
+
+        public override string ToString()
+        {
+            //TODO:
+            return null;
         }
 
         private static HttpMethod ParseMethod(string method)
@@ -63,7 +77,7 @@ namespace MyWebServer.Server.Http
                 "POST" => HttpMethod.Post,
                 "PUT" => HttpMethod.Put,
                 "DELETE" => HttpMethod.Delete,
-                _ => HttpMethod.Get //throw new InvalidOperationException($"Method '{method}' is not supported."),
+                _ => throw new InvalidOperationException($"Method '{method}' is not supported."),
             };
         }
 
@@ -133,13 +147,27 @@ namespace MyWebServer.Server.Http
                     var cookieName = cookieParts[0].Trim();
                     var cookieValue = cookieParts[1].Trim();
 
-                    var cookie = new HttpCookie(cookieName,cookieValue);
+                    var cookie = new HttpCookie(cookieName, cookieValue);
 
                     cookieCollection.Add(cookieName, cookie);
                 }
             }
 
             return cookieCollection;
+        }
+
+        private static HttpSession GetSesssion(Dictionary<string, HttpCookie> cookies)
+        {
+            var sessionId = cookies.ContainsKey(HttpSession.SessionCookieName)
+                ? cookies[HttpSession.SessionCookieName].Value
+                : Guid.NewGuid().ToString();
+
+            if (!Sessions.ContainsKey(sessionId))
+            {
+                Sessions[sessionId] = new HttpSession(sessionId);
+            }
+
+            return Sessions[sessionId];
         }
 
         private static Dictionary<string, string> ParseForm(Dictionary<string, HttpHeader> headers, string body)

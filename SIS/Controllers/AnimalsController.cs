@@ -1,5 +1,6 @@
 ﻿using MyWebServer.Server.Http;
 using MyWebServer.Server.Controllers;
+using SIS.Models.Animals;
 
 namespace SIS.Controllers
 {
@@ -15,6 +16,7 @@ namespace SIS.Controllers
         public HttpResponse Cats()
         {
             const string nameKey = "Name";
+            const string ageKey = "Age";
 
             var query = this.Request.Query;
 
@@ -22,9 +24,17 @@ namespace SIS.Controllers
                     ? query[nameKey]
                     : "the cats";
 
-            var result = $"<h1>Hello from {catName}!</h1>";
+            var catAge = query.ContainsKey(ageKey)
+                ? int.Parse(query[ageKey])
+                : 0;
 
-            return Html(result);
+            var viewModel = new CatViewModel
+            {
+                Name = catName,
+                Age = catAge
+            };
+
+            return View(viewModel);
         }
 
         public HttpResponse Create() => View();
@@ -32,7 +42,7 @@ namespace SIS.Controllers
         public HttpResponse Dogs() => View();
 
         public HttpResponse Bunnies() => View("Rabbits");
-        
+
         public HttpResponse Turtles() => View("Animals/Wild/Turtles");
     }
 }

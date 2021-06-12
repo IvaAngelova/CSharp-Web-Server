@@ -26,13 +26,13 @@ namespace MyWebServer.Server
             routingTableConfiguration(this.routingTable = new RoutingTable());
         }
 
-        public HttpServer(int port, Action<IRoutingTable> routingTable) 
+        public HttpServer(int port, Action<IRoutingTable> routingTable)
             : this("127.0.0.1", port, routingTable)
         {
 
         }
 
-        public HttpServer(Action<IRoutingTable> routingTable) 
+        public HttpServer(Action<IRoutingTable> routingTable)
             : this(8080, routingTable)
         {
 
@@ -53,12 +53,21 @@ namespace MyWebServer.Server
 
                 var requestText = await this.ReadRequest(networkStream);
 
-                //Console.WriteLine(requestText);
+                try
+                {
+                    var request = HttpRequest.Parse(requestText);
+                    var response = this.routingTable.ExecuteRequest(request);
 
-                var request = HttpRequest.Parse(requestText);
-                var response = this.routingTable.ExecuteRequest(request);
+                    this.PrepareSession(request, response);
 
-                await WriteResponse(networkStream, response);
+                    this.LogPipeline(request, response);
+
+                    await WriteResponse(networkStream, response);
+                }
+                catch (Exception exception)
+                {
+                    await HandleError(networkStream, exception);
+                }
 
                 connection.Close();
             }
@@ -89,6 +98,42 @@ namespace MyWebServer.Server
             while (networkStream.DataAvailable);
 
             return requestBuilder.ToString().Trim();
+        }
+
+        private void PrepareSession(HttpRequest request, HttpResponse response)
+        {
+            response.AddCookie(HttpSession.SessionCookieName, request.Session.Id);
+        }
+
+        private async Task HandleError(NetworkStream networkStream, Exception exception)
+        {
+            var errorMessage = $"{exception.Message} {Environment.NewLine} {exception.StackTrace}";
+
+            var errorResponse = HttpResponse.ForError(errorMessage);
+
+            await WriteResponse(networkStream, errorResponse);
+        }
+
+        private void LogPipeline(HttpRequest request, HttpResponse response)
+        {
+            var separator = new string('-', 50);
+
+            var log = new StringBuilder();
+
+            log.AppendLine();
+            log.AppendLine(separator);
+
+            log.AppendLine("REQUEST");
+            log.AppendLine(request.ToString());
+
+            log.AppendLine();
+
+            log.AppendLine("RESPONSE");
+            log.AppendLine(response.ToString());
+
+            log.AppendLine();
+
+            Console.WriteLine(log);
         }
 
         private async Task WriteResponse(NetworkStream networkStream, HttpResponse response)

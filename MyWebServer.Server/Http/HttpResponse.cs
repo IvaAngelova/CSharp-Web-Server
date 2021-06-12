@@ -1,24 +1,44 @@
-﻿using MyWebServer.Server.Common;
-using System;
+﻿using System;
 using System.Text;
+using System.Collections.Generic;
+
+using MyWebServer.Server.Common;
 
 namespace MyWebServer.Server.Http
 {
-    public abstract class HttpResponse
+    public class HttpResponse
     {
         public HttpResponse(HttpStatusCode statusCode)
         {
             this.StatusCode = statusCode;
 
-            this.Headers.Add("Server", "My Web Server");
-            this.Headers.Add("Date", $"{DateTime.UtcNow:r}");
+            this.AddHeader(HttpHeader.Server, "My Web Server");
+            this.AddHeader(HttpHeader.Date, $"{DateTime.UtcNow:r}");
         }
 
         public HttpStatusCode StatusCode { get; protected set; }
 
-        public HttpHeaderCollection Headers { get; } = new HttpHeaderCollection();
+        public IDictionary<string, HttpHeader> Headers { get; } = new Dictionary<string, HttpHeader>();
+
+        public IDictionary<string, HttpCookie> Cookies { get; } = new Dictionary<string, HttpCookie>();
 
         public string Content { get; protected set; }
+
+        public void AddHeader(string name, string value)
+        {
+            Guard.AgainstNull(name, nameof(name));
+            Guard.AgainstNull(value, nameof(value));
+
+            this.Headers[name] = new HttpHeader(name, value);
+        }
+
+        public void AddCookie(string name, string value)
+        {
+            Guard.AgainstNull(name, nameof(name));
+            Guard.AgainstNull(value, nameof(value));
+
+            this.Cookies[name] = new HttpCookie(name, value);
+        }
 
         public override string ToString()
         {
@@ -26,9 +46,14 @@ namespace MyWebServer.Server.Http
 
             result.AppendLine($"HTTP/1.1 {(int)this.StatusCode} {this.StatusCode}");
 
-            foreach (var header in this.Headers)
+            foreach (var header in this.Headers.Values)
             {
                 result.AppendLine(header.ToString());
+            }
+            
+            foreach (var cookie in this.Cookies.Values)
+            {
+                result.AppendLine($"{HttpHeader.SetCookie}: {cookie}");
             }
 
             if (!string.IsNullOrEmpty(this.Content))
@@ -48,8 +73,8 @@ namespace MyWebServer.Server.Http
 
             var contentLength = Encoding.UTF8.GetByteCount(content).ToString();
 
-            this.Headers.Add("Content-Type", contentType);
-            this.Headers.Add("Content-Length", contentLength);
+            this.AddHeader(HttpHeader.ContentType, contentType);
+            this.AddHeader(HttpHeader.ContentLength, contentLength);
 
             this.Content = content;
 

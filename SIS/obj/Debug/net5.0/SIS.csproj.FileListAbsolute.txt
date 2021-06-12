@@ -55,3 +55,5 @@ D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\obj\Deb
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\Views\Animals\Dogs.cshtml
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\Views\Animals\Wild\Turtles.cshtml
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\Views\Animals\Rabbits.cshtml
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\Views\Cats\Create.cshtml
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\Views\Animals\Cats.cshtml

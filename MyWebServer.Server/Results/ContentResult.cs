@@ -8,7 +8,7 @@ namespace MyWebServer.Server.Results
         public ContentResult(HttpResponse response,string content, string contentType)
             : base(response)
         {
-            this.PrepareContent(content, contentType);
+            this.SetContent(content, contentType);
         }
     }
 }

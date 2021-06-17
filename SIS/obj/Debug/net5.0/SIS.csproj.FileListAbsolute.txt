@@ -57,3 +57,8 @@ D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Deb
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\Views\Animals\Rabbits.cshtml
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\Views\Cats\Create.cshtml
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\Views\Animals\Cats.cshtml
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\Views\Home\StaticFiles.cshtml
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\wwwroot\css\styles.css
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\wwwroot\js\index.js
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\wwwroot\img\cat.jpg
+D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\SIS\bin\Debug\net5.0\wwwroot\favicon.ico.ico

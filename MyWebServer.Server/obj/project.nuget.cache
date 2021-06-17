@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "m2T0z59pLz4V6subJWRUkkpxbn78ebjJMFzsxOoFXa0ZMyasT7w0akM6ktOpp56tJ99qeowTgzVCfxGrQcozaQ==",
+  "dgSpecHash": "pdNqONIW6rAUdUM+X/rKKDPpRNkFldJEfjC3K2mccehRvPqvPqW3UBDH/Dds9fc6NZWurWdjCOmGotF90fj9vw==",
   "success": true,
   "projectFilePath": "D:\\SoftUni\\C# Web\\C# Web Basics\\Lab\\New folder\\SIS\\CSharp-Web-Server\\MyWebServer.Server\\MyWebServer.Server.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,11 +1,13 @@
 ﻿using System;
-
+using MyWebServer.Server.Common;
 using MyWebServer.Server.Http;
 
 namespace MyWebServer.Server.Routing
 {
     public interface IRoutingTable
     {
+        IRoutingTable MapStaticFiles(string folder = Settings.StaticFilesRootFolder);
+
         IRoutingTable Map(HttpMethod method, string path, HttpResponse response);
 
         IRoutingTable Map(HttpMethod method, string path, Func<HttpRequest, HttpResponse> responseFunction);

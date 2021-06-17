@@ -60,6 +60,7 @@ namespace MyWebServer.Server
                         var request = HttpRequest.Parse(requestText);
                         var response = this.routingTable.ExecuteRequest(request);
 
+<<<<<<< HEAD
                         this.PrepareSession(request, response);
 
                         this.LogPipeline(request, response);
@@ -70,6 +71,23 @@ namespace MyWebServer.Server
                     {
                         await HandleError(networkStream, exception);
                     }
+=======
+                try
+                {
+                    var request = HttpRequest.Parse(requestText);
+                    var response = this.routingTable.ExecuteRequest(request);
+
+                    this.PrepareSession(request, response);
+
+                    this.LogPipeline(request, response);
+
+                    await WriteResponse(networkStream, response);
+                }
+                catch (Exception exception)
+                {
+                    await HandleError(networkStream, exception);
+                }
+>>>>>>> ba9ce9cc7bc97caa059ea28a9c51bc5c13644b7e
 
                     connection.Close();
                 });

@@ -29,6 +29,7 @@ namespace MyWebServer.Server.Http
 
         public bool ContainsKey(string key)
             => this.data.ContainsKey(key);
+<<<<<<< HEAD
 
         public void Remove(string key)
         {
@@ -37,5 +38,7 @@ namespace MyWebServer.Server.Http
                 this.data.Remove(key);
             }
         }
+=======
+>>>>>>> ba9ce9cc7bc97caa059ea28a9c51bc5c13644b7e
     }
 }

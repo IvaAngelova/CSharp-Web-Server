@@ -49,27 +49,30 @@ namespace MyWebServer.Server
             {
                 var connection = await this.listener.AcceptTcpClientAsync();
 
-                var networkStream = connection.GetStream();
-
-                var requestText = await this.ReadRequest(networkStream);
-
-                try
+                _ = Task.Run(async () =>
                 {
-                    var request = HttpRequest.Parse(requestText);
-                    var response = this.routingTable.ExecuteRequest(request);
+                    var networkStream = connection.GetStream();
 
-                    this.PrepareSession(request, response);
+                    var requestText = await this.ReadRequest(networkStream);
 
-                    this.LogPipeline(request, response);
+                    try
+                    {
+                        var request = HttpRequest.Parse(requestText);
+                        var response = this.routingTable.ExecuteRequest(request);
 
-                    await WriteResponse(networkStream, response);
-                }
-                catch (Exception exception)
-                {
-                    await HandleError(networkStream, exception);
-                }
+                        this.PrepareSession(request, response);
 
-                connection.Close();
+                        this.LogPipeline(request, response);
+
+                        await WriteResponse(networkStream, response);
+                    }
+                    catch (Exception exception)
+                    {
+                        await HandleError(networkStream, exception);
+                    }
+
+                    connection.Close();
+                });
             }
         }
 

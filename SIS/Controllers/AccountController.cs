@@ -1,6 +1,7 @@
-﻿using MyWebServer.Server.Http;
+﻿using System;
+
+using MyWebServer.Server.Http;
 using MyWebServer.Server.Controllers;
-using System;
 
 namespace SIS.Controllers
 {
@@ -12,7 +13,34 @@ namespace SIS.Controllers
 
         }
 
-        public HttpResponse ActionWithCookies()
+        public HttpResponse Login()
+        {
+            var someUserId = "MyUserId";
+
+            this.SignIn(someUserId);
+
+            return Text("User authenticated!");
+        }
+
+        public HttpResponse Logout()
+        {
+            this.SignOut();
+
+            return Text("User signed out!");
+        }
+
+        public HttpResponse AuthenticatedCheck()
+        {
+            if (this.User.IsAuthenticated)
+            {
+                return Text($"Authenticated user: {this.User.Id}");
+            }
+
+            return Text("User is not authenticated!");
+        }
+
+
+        public HttpResponse CookiesCheck()
         {
             const string cookieName = "My-Cookie";
 
@@ -29,7 +57,7 @@ namespace SIS.Controllers
             return Text("Cookies set!");
         }
 
-        public HttpResponse ActionWithSession()
+        public HttpResponse SessionCheck()
         {
             const string currentDateKey = "CurrentDate";
 

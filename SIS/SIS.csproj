@@ -21,5 +21,9 @@
   <None Remove="Views\Animals\Wild\Turtles.cshtml" />
   <None Remove="Views\Cats\Create.cshtml" />
 </ItemGroup>
+  
+<ItemGroup>
+  <Folder Include="NewFolder\" />
+</ItemGroup>
 
 </Project>

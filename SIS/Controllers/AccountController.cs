@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-﻿using System;
+using System;
 
 using MyWebServer.Server.Http;
 using MyWebServer.Server.Controllers;
-=======
-﻿using MyWebServer.Server.Http;
-using MyWebServer.Server.Controllers;
-using System;
->>>>>>> ba9ce9cc7bc97caa059ea28a9c51bc5c13644b7e
 
 namespace SIS.Controllers
 {
@@ -19,7 +13,6 @@ namespace SIS.Controllers
 
         }
 
-<<<<<<< HEAD
         public HttpResponse Login()
         {
             var someUserId = "MyUserId";
@@ -48,9 +41,6 @@ namespace SIS.Controllers
 
 
         public HttpResponse CookiesCheck()
-=======
-        public HttpResponse ActionWithCookies()
->>>>>>> ba9ce9cc7bc97caa059ea28a9c51bc5c13644b7e
         {
             const string cookieName = "My-Cookie";
 
@@ -67,11 +57,7 @@ namespace SIS.Controllers
             return Text("Cookies set!");
         }
 
-<<<<<<< HEAD
         public HttpResponse SessionCheck()
-=======
-        public HttpResponse ActionWithSession()
->>>>>>> ba9ce9cc7bc97caa059ea28a9c51bc5c13644b7e
         {
             const string currentDateKey = "CurrentDate";
 

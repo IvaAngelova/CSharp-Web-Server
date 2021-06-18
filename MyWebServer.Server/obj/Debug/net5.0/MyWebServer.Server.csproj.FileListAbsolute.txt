@@ -20,4 +20,3 @@ D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\MyWebServer
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\MyWebServer.Server\obj\Debug\net5.0\MyWebServer.Server.dll
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\MyWebServer.Server\obj\Debug\net5.0\ref\MyWebServer.Server.dll
 D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\MyWebServer.Server\obj\Debug\net5.0\MyWebServer.Server.pdb
-D:\SoftUni\C# Web\C# Web Basics\Lab\New folder\SIS\CSharp-Web-Server\MyWebServer.Server\obj\Debug\net5.0\MyWebServer.Server.csprojAssemblyReference.cache

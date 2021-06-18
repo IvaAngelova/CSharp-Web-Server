@@ -1,27 +1,35 @@
-﻿using MyWebServer.Server.Http;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
+
+using MyWebServer.Server.Http;
+using MyWebServer.Server.Results.View;
 
 namespace MyWebServer.Server.Results
 {
     public class ViewResult : ActionResult
     {
         private const char PathSeparator = '/';
+        private readonly string[] ViewFileExtensions = { "html", "cshtml" };
 
-        public ViewResult(HttpResponse response, string viewName, string controllerName, object model)
+        public ViewResult(
+            HttpResponse response,
+            IViewEngine viewEngine,
+            string viewName,
+            string controllerName,
+            object model,
+            string userId)
             : base(response)
-           => this.GetHtml(viewName, controllerName, model);
+            => this.GetHtml(viewEngine, viewName, controllerName, model, userId);
 
-        private void GetHtml(string viewName, string controllerName, object model)
+        private void GetHtml(IViewEngine viewEngine, string viewName, string controllerName, object model, string userId)
         {
             if (!viewName.Contains(PathSeparator))
             {
                 viewName = controllerName + PathSeparator + viewName;
             }
 
-            var viewPath = Path.GetFullPath($"./Views/" + viewName.TrimStart(PathSeparator) + ".cshtml");
+            var (viewPath, viewExists) = FindView(viewName);
 
-            if (!File.Exists(viewPath))
+            if (!viewExists)
             {
                 this.PrepareMissingViewError(viewPath);
 
@@ -30,21 +38,64 @@ namespace MyWebServer.Server.Results
 
             var viewContent = File.ReadAllText(viewPath);
 
-            if (model != null)
-            {
-                viewContent = this.PopulateModel(viewContent, model);
-            }
+            var (layoutPath, layoutExists) = FindLayout();
 
-            var layoutPath = Path.GetFullPath("./View/Layout.cshtml");
-
-            if (File.Exists(layoutPath))
+            if (layoutExists)
             {
                 var layoutContent = File.ReadAllText(layoutPath);
 
                 viewContent = layoutContent.Replace("@RenderBody()", viewContent);
             }
 
+            viewContent = viewEngine.RenderHtml(viewContent, model, userId);
+
             this.SetContent(viewContent, HttpContentType.Html);
+        }
+
+        private (string, bool) FindView(string viewName)
+        {
+            string viewPath = null;
+            var exists = false;
+
+            foreach (var fileExtension in ViewFileExtensions)
+            {
+                viewPath = Path.GetFullPath($"./Views/" + viewName.TrimStart(PathSeparator) + $".{fileExtension}");
+
+                if (File.Exists(viewPath))
+                {
+                    exists = true;
+                    break;
+                }
+            }
+
+            return (viewPath, exists);
+        }
+
+        private (string, bool) FindLayout()
+        {
+            string layoutPath = null;
+            bool exists = false;
+
+            foreach (var fileExtension in ViewFileExtensions)
+            {
+                layoutPath = Path.GetFullPath($"./Views/Layout.{fileExtension}");
+
+                if (File.Exists(layoutPath))
+                {
+                    exists = true;
+                    break;
+                }
+
+                layoutPath = Path.GetFullPath($"./Views/Shared/_Layout.{fileExtension}");
+
+                if (File.Exists(layoutPath))
+                {
+                    exists = true;
+                    break;
+                }
+            }
+
+            return (layoutPath, exists);
         }
 
         private void PrepareMissingViewError(string viewPath)
@@ -54,26 +105,6 @@ namespace MyWebServer.Server.Results
             var errorMessage = $"View '{viewPath}' was not found.";
 
             this.SetContent(errorMessage, HttpContentType.PlainText);
-        }
-
-        private string PopulateModel(string viewContent, object model)
-        {
-            var data = model
-                .GetType()
-                .GetProperties()
-                .Select(pr => new
-                {
-                    Name = pr.Name,
-                    Value = pr.GetValue(model)
-                });
-
-
-            foreach (var entry in data)
-            {
-                viewContent = viewContent.Replace($"@Model.{entry.Name}", entry.Value.ToString());
-            }
-
-            return viewContent;
         }
     }
 }

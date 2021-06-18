@@ -3,6 +3,8 @@
 using MyWebServer.Server.Http;
 using MyWebServer.Server.Results;
 using MyWebServer.Server.Identity;
+using System.Collections.Generic;
+using MyWebServer.Server.Results.View;
 
 namespace MyWebServer.Server.Controllers
 {
@@ -11,6 +13,7 @@ namespace MyWebServer.Server.Controllers
         public const string UserSessionKey = "AuthenticatedUserId";
 
         private UserIdentity userIdentity;
+        private IViewEngine viewEngine;
 
         protected HttpRequest Request { get; init; }
 
@@ -22,7 +25,7 @@ namespace MyWebServer.Server.Controllers
             {
                 if (this.userIdentity == null)
                 {
-                    this.userIdentity = this.Request.Session.ContainsKey(UserSessionKey)
+                    this.userIdentity = this.Request.Session.Contains(UserSessionKey)
                         ? new UserIdentity { Id = this.Request.Session[UserSessionKey] }
                         : new();
                 }
@@ -31,13 +34,24 @@ namespace MyWebServer.Server.Controllers
             }
         }
 
+        protected IViewEngine ViewEngine
+        {
+            get
+            {
+                if (this.viewEngine == null)
+                {
+                    this.viewEngine = this.Request.Services.Get<IViewEngine>()
+                        ?? new ParserViewEngine();
+                }
+
+                return this.viewEngine;
+            }
+        }
+
         protected void SignIn(string userId)
         {
             this.Request.Session[UserSessionKey] = userId;
-            this.userIdentity = new UserIdentity
-            {
-                Id = userId
-            };
+            this.userIdentity = new UserIdentity { Id = userId };
         }
 
         protected void SignOut()
@@ -50,21 +64,33 @@ namespace MyWebServer.Server.Controllers
             => new TextResult(this.Response, text);
 
         protected ActionResult Html(string html)
-             => new HtmlResult(this.Response, html);
+            => new HtmlResult(this.Response, html);
+
+        protected ActionResult BadRequest()
+            => new BadRequestResult(this.Response);
+
+        protected ActionResult Unauthorized()
+            => new UnauthorizedResult(this.Response);
 
         protected ActionResult Redirect(string location)
             => new RedirectResult(this.Response, location);
 
         protected ActionResult View([CallerMemberName] string viewName = "")
-            => new ViewResult(this.Response, viewName, GetControllerName(), null);
+            => this.GetViewResult(viewName, null);
 
         protected ActionResult View(string viewName, object model)
-            => new ViewResult(this.Response, viewName, GetControllerName(), model);
+            => this.GetViewResult(viewName, model);
 
         protected ActionResult View(object model, [CallerMemberName] string viewName = "")
-            => new ViewResult(this.Response, viewName, GetControllerName(), model);
+            => this.GetViewResult(viewName, model);
 
-        private string GetControllerName()
-            => this.GetType().GetControllerName();
+        protected ActionResult Error(string error)
+            => this.Error(new[] { error });
+
+        protected ActionResult Error(IEnumerable<string> errors)
+            => this.View("./Error", errors);
+
+        private ActionResult GetViewResult(string viewName, object model)
+            => new ViewResult(this.Response, this.ViewEngine, viewName, this.GetType().GetControllerName(), model, this.User.Id);
     }
 }

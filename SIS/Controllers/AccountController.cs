@@ -13,29 +13,31 @@ namespace SIS.Controllers
 
             this.SignIn(someUserId);
 
-            return Text("User authenticated!");
+            return View();
         }
 
         public HttpResponse Logout()
         {
             this.SignOut();
 
-            return Text("User signed out!");
+            return View();
         }
 
         public HttpResponse AuthenticationCheck()
         {
-            if (this.User.IsAuthenticated)
-            {
-                return Text($"Authenticated user: {this.User.Id}");
-            }
+            //if (this.User.IsAuthenticated)
+            //{
+            //    return Text($"Authenticated user: {this.User.Id}");
+            //}
 
-            return Text("User is not authenticated!");
+            //return Text("User is not authenticated!");
+
+            return View();
         }
 
         [Authorize]
         public HttpResponse AuthorizationCheck()
-            => Text($"Current user: {this.User.Id}");
+            => View();
 
         public HttpResponse CookiesCheck()
         {
@@ -58,7 +60,7 @@ namespace SIS.Controllers
         {
             const string currentDateKey = "CurrentDate";
 
-            if (this.Request.Session.ContainsKey(currentDateKey))
+            if (this.Request.Session.Contains(currentDateKey))
             {
                 var currentDate = this.Request.Session[currentDateKey];
 

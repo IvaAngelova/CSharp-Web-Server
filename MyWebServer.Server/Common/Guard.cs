@@ -9,6 +9,7 @@ namespace MyWebServer.Server.Common
             if (value == null)
             {
                 name ??= "Value";
+
                 throw new ArgumentException($"{name} cannot be null.");
             }
         }

@@ -8,7 +8,7 @@ namespace SIS.Controllers
     public class HomeController : Controller
     {
         public HttpResponse Index()
-            => Text("Hello from my server!");
+            => View();
 
         public HttpResponse LocalRedirect() => Redirect("/Animals/Cats");
 

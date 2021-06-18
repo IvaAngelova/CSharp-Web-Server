@@ -1,0 +1,8 @@
+﻿@if (Model.User.IsAuthenticated)
+{
+    <h1>Authenticated user: {Model.User.Id}</h1>
+}
+else
+{
+    <h1>User is not authenticated!</h1>
+}

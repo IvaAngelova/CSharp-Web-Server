@@ -15,8 +15,8 @@ namespace SIS.Controllers
             var query = this.Request.Query;
 
             var catName = query.Contains(nameKey)
-                    ? query[nameKey]
-                    : "the cats";
+                ? query[nameKey]
+                : "the cats";
 
             var catAge = query.Contains(ageKey)
                 ? int.Parse(query[ageKey])
@@ -31,9 +31,12 @@ namespace SIS.Controllers
             return View(viewModel);
         }
 
-        public HttpResponse Create() => View();
-
-        public HttpResponse Dogs() => View();
+        public HttpResponse Dogs() => View(new DogViewModel
+        {
+            Name = "Rex",
+            Age = 3,
+            Breed = "Street Perfect"
+        });
 
         public HttpResponse Bunnies() => View("Rabbits");
 

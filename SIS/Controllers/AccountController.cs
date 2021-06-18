@@ -7,12 +7,6 @@ namespace SIS.Controllers
 {
     public class AccountController : Controller
     {
-        public AccountController(HttpRequest request)
-            : base(request)
-        {
-
-        }
-
         public HttpResponse Login()
         {
             var someUserId = "MyUserId";
@@ -39,12 +33,15 @@ namespace SIS.Controllers
             return Text("User is not authenticated!");
         }
 
+        [Authorize]
+        public HttpResponse AuthorizationCheck()
+            => Text($"Current user: {this.User.Id}");
 
         public HttpResponse CookiesCheck()
         {
             const string cookieName = "My-Cookie";
 
-            if (this.Request.Cookies.ContainsKey(cookieName))
+            if (this.Request.Cookies.Contains(cookieName))
             {
                 var cookie = this.Request.Cookies[cookieName];
 

@@ -8,30 +8,33 @@ namespace MyWebServer.Server.Controllers
 {
     public abstract class Controller
     {
-        private const string UserSessionKey = "AuthenticatedUserId";
+        public const string UserSessionKey = "AuthenticatedUserId";
 
-        protected Controller(HttpRequest request)
-        {
-            this.Request = request;
+        private UserIdentity userIdentity;
 
-            this.User = this.Request.Session.ContainsKey(UserSessionKey)
-                ? new UserIdentity
-                {
-                    Id = this.Request.Session[UserSessionKey]
-                }
-                : new();
-        }
-
-        protected HttpRequest Request { get; private init; }
+        protected HttpRequest Request { get; init; }
 
         protected HttpResponse Response { get; private init; } = new HttpResponse(HttpStatusCode.OK);
 
-        protected UserIdentity User { get; private set; }
+        protected UserIdentity User
+        {
+            get
+            {
+                if (this.userIdentity == null)
+                {
+                    this.userIdentity = this.Request.Session.ContainsKey(UserSessionKey)
+                        ? new UserIdentity { Id = this.Request.Session[UserSessionKey] }
+                        : new();
+                }
+
+                return this.userIdentity;
+            }
+        }
 
         protected void SignIn(string userId)
         {
             this.Request.Session[UserSessionKey] = userId;
-            this.User = new UserIdentity
+            this.userIdentity = new UserIdentity
             {
                 Id = userId
             };
@@ -40,9 +43,8 @@ namespace MyWebServer.Server.Controllers
         protected void SignOut()
         {
             this.Request.Session.Remove(UserSessionKey);
-            this.User = new();
+            this.userIdentity = new();
         }
-
 
         protected ActionResult Text(string text)
             => new TextResult(this.Response, text);
@@ -63,6 +65,6 @@ namespace MyWebServer.Server.Controllers
             => new ViewResult(this.Response, viewName, GetControllerName(), model);
 
         private string GetControllerName()
-            => this.GetType().Name.Replace(nameof(Controller), string.Empty);
+            => this.GetType().GetControllerName();
     }
 }

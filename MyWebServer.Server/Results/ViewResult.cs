@@ -19,11 +19,12 @@ namespace MyWebServer.Server.Results
                 viewName = controllerName + PathSeparator + viewName;
             }
 
-            var viewPath = Path.GetFullPath("./Views/" + viewName.TrimStart(PathSeparator) + ".cshtml");
+            var viewPath = Path.GetFullPath($"./Views/" + viewName.TrimStart(PathSeparator) + ".cshtml");
 
             if (!File.Exists(viewPath))
             {
                 this.PrepareMissingViewError(viewPath);
+
                 return;
             }
 
@@ -32,6 +33,15 @@ namespace MyWebServer.Server.Results
             if (model != null)
             {
                 viewContent = this.PopulateModel(viewContent, model);
+            }
+
+            var layoutPath = Path.GetFullPath("./View/Layout.cshtml");
+
+            if (File.Exists(layoutPath))
+            {
+                var layoutContent = File.ReadAllText(layoutPath);
+
+                viewContent = layoutContent.Replace("@RenderBody()", viewContent);
             }
 
             this.SetContent(viewContent, HttpContentType.Html);
@@ -60,10 +70,7 @@ namespace MyWebServer.Server.Results
 
             foreach (var entry in data)
             {
-                const string openingBrackets = "{{";
-                const string closingBrackets = "}}";
-
-                viewContent = viewContent.Replace($"{openingBrackets}{entry.Name}{closingBrackets}", entry.Value.ToString());
+                viewContent = viewContent.Replace($"@Model.{entry.Name}", entry.Value.ToString());
             }
 
             return viewContent;
